@@ -1,7 +1,12 @@
 const mongoose = require("mongoose");
 const setupDB = () => {
+  console.log(process.env.MONGO_URI, "ui");
   mongoose
-    .connect("mongodb://localhost:27017/nov-notes-app")
+    .connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useCreateIndex: true,
+      useUnifiedTopology: true
+    })
     .then(() => {
       console.log("connected to db");
     })

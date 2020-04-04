@@ -2,10 +2,16 @@ import axios from "../config/axios";
 
 export const startGetNotes = () => {
   return (dispatch) => {
-    axios.get("/notes").then((response) => {
-      const notes = response.data;
-      dispatch(getNotes(notes));
-    });
+    axios
+      .get("/notes", {
+        headers: {
+          "x-auth": localStorage.getItem("authToken")
+        }
+      })
+      .then((response) => {
+        const notes = response.data;
+        dispatch(getNotes(notes));
+      });
   };
 };
 
@@ -16,7 +22,11 @@ export const getNotes = (notes) => {
 export const startRemoveNotes = (id) => {
   return (dispatch) => {
     axios
-      .delete(`/notes/${id}`)
+      .delete(`/notes/${id}`, {
+        headers: {
+          "x-auth": localStorage.getItem("authToken")
+        }
+      })
       .then((response) => {
         console.log(response.data);
         const department = response.data;
@@ -35,10 +45,16 @@ export const removeNotes = (id) => {
 
 export const startNotesEdit = (formData, id) => {
   return (dispatch) => {
-    axios.put(`/notes/${id}`, formData).then((response) => {
-      console.log(response.data);
-      dispatch(editNotes(formData, id));
-    });
+    axios
+      .put(`/notes/${id}`, formData, {
+        headers: {
+          "x-auth": localStorage.getItem("authToken")
+        }
+      })
+      .then((response) => {
+        console.log(response.data);
+        dispatch(editNotes(formData, id));
+      });
   };
 };
 
@@ -54,10 +70,16 @@ export const editNotes = (data, id) => {
 
 export const startAddNotes = (formData) => {
   return (dispatch) => {
-    axios.post("/notes", formData).then((response) => {
-      console.log(response.data);
-      dispatch(addNotes(formData));
-    });
+    axios
+      .post("/notes", formData, {
+        headers: {
+          "x-auth": localStorage.getItem("authToken")
+        }
+      })
+      .then((response) => {
+        console.log(response.data);
+        dispatch(addNotes(formData));
+      });
   };
 };
 

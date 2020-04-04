@@ -1,7 +1,7 @@
 const Note = require("../models/note");
 
 module.exports.list = (req, res) => {
-  Note.find()
+  Note.find({ user: req.user._id })
     .then((note) => {
       res.json(note);
     })
@@ -27,8 +27,15 @@ module.exports.show = (req, res) => {
 };
 
 module.exports.create = (req, res) => {
+  console.log(req.user, "user");
   const body = req.body;
-  const note = new Note(body);
+  const note = new Note({
+    title: body.title,
+    body: body.body,
+    category: body.category,
+    edit: body.edit,
+    user: req.user._id
+  });
   note
     .save()
     .then((note) => {

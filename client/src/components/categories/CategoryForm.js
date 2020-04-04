@@ -5,11 +5,18 @@ import {
   startCategoryEdit
 } from "../../actions/categoryAction";
 import { connect } from "react-redux";
-
+import NoteAddIcon from "@material-ui/icons/NoteAdd";
+import EditIcon from "@material-ui/icons/Edit";
 function CategoryForm(props) {
   return (
     <div>
-      <h1>{props.status.toUpperCase()}</h1>
+      <div style={{ marginTop: 50, marginBottom: 50 }}>
+        {props.status == "add" ? (
+          <NoteAddIcon style={{ width: "50px", height: "50px" }} />
+        ) : (
+          <EditIcon style={{ width: "50px", height: "50px" }} />
+        )}
+      </div>
       <Formik
         enableReinitialize={true}
         initialValues={{ name: props.category }}
@@ -30,15 +37,21 @@ function CategoryForm(props) {
           /* and other goodies */
         }) => (
           <form onSubmit={handleSubmit}>
-            <input
-              type="text"
-              name="name"
-              placeholder="name"
-              onChange={handleChange}
-              value={values.name}
-            />
-
-            <button type="submit">Submit</button>
+            <div class="input-group mb-3" style={{ width: 600 }}>
+              <input
+                type="text"
+                name="name"
+                placeholder="name"
+                onChange={handleChange}
+                value={values.name}
+                className="form-control"
+              />
+              <div class="input-group-append">
+                <button type="submit" className="btn btn-outline-secondary">
+                  Add
+                </button>
+              </div>
+            </div>
           </form>
         )}
       </Formik>

@@ -9,6 +9,9 @@ const categorySchema = new Schema({
   edit: {
     type: Boolean,
     default: true
+  },
+  user: {
+    type: Schema.Types.ObjectId
   }
 });
 

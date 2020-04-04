@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { startRemoveCategory } from "./../../actions/categoryAction";
 import CategoryForm from "./CategoryForm";
+import MainAppBar from "../AppBar";
 function Category(props) {
   const [dataId, SetDataId] = React.useState("");
   const [status, SetStatus] = React.useState("add");
@@ -19,41 +20,50 @@ function Category(props) {
     props.dispatch(startRemoveCategory(id));
   };
   return (
-    <div align="center">
-      <div>
-        <h1>Category</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Details</th>
-              <th>Remove</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props.category !== undefined &&
-              props.category.map((ele) => {
-                return (
-                  <tr key={ele._id + ele.name}>
-                    <td>{ele.name}</td>
-                    <td>
-                      <button onClick={() => handleEdit(ele._id, ele.name)}>
-                        Edit
-                      </button>
-                    </td>
-                    <td>
-                      <button onClick={() => handleRemove(ele._id)}>
-                        Remove
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
+    <>
+      <MainAppBar />
+      <div align="center" style={{ marginTop: 100 }}>
+        <div>
+          <h1>Category</h1>
+          <table className="table " style={{ maxWidth: 700 }}>
+            <thead className="thead-dark">
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Details</th>
+                <th scope="col">Remove</th>
+              </tr>
+            </thead>
+            <tbody>
+              {props.category !== undefined &&
+                props.category.map((ele) => {
+                  return (
+                    <tr key={ele._id + ele.name} scope="row">
+                      <td>{ele.name}</td>
+                      <td>
+                        <button
+                          onClick={() => handleEdit(ele._id, ele.name)}
+                          className="btn btn-secondary"
+                        >
+                          Edit
+                        </button>
+                      </td>
+                      <td>
+                        <button
+                          onClick={() => handleRemove(ele._id)}
+                          className="btn btn-danger"
+                        >
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+            </tbody>
+          </table>
+        </div>
+        <CategoryForm category={category} id={dataId} status={status} />
       </div>
-      <CategoryForm category={category} id={dataId} status={status} />
-    </div>
+    </>
   );
 }
 

@@ -2,8 +2,36 @@ import React from "react";
 import { connect } from "react-redux";
 import NotesForm from "./NotesForm";
 import { startRemoveNotes } from "./../../actions/notesAction";
+import Grid from "@material-ui/core/Grid";
+import Divider from "@material-ui/core/Divider";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import MainAppBar from "../AppBar";
+const useStyles = makeStyles({
+  root: {
+    maxWidth: 375,
+    marginTop: 15,
+    maxHeight: 375
+  },
+  bullet: {
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)"
+  },
+  title: {
+    fontSize: 14
+  },
+  pos: {
+    marginBottom: 12
+  }
+});
 
 function Notes(props) {
+  const classes = useStyles();
   const [dataId, SetDataId] = React.useState("");
   const [status, SetStatus] = React.useState("add");
   const [title, SetTitle] = React.useState("");
@@ -24,53 +52,76 @@ function Notes(props) {
   };
 
   return (
-    <div align="center">
-      <div>
-        <h1>Notes</h1>
-        <table>
-          <thead>
-            <tr>
-              <th>Title</th>
-              <th>Body</th>
-              <th>Details</th>
-              <th>Remove</th>
-            </tr>
-          </thead>
-          <tbody>
-            {props.notes !== undefined &&
-              props.notes.map((ele) => {
-                return (
-                  <tr key={ele._id + ele.title}>
-                    <td>{ele.title}</td>
-                    <td>{ele.body}</td>
-                    <td>
-                      <button
-                        onClick={() =>
-                          handleEdit(ele._id, ele.title, ele.body, ele.category)
-                        }
-                      >
-                        Edit
-                      </button>
-                    </td>
-                    <td>
-                      <button onClick={() => handleRemove(ele._id)}>
-                        Remove
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
-          </tbody>
-        </table>
+    <>
+      <MainAppBar />
+      <div align="center" style={{ marginTop: "100px" }}>
+        <Grid container component="main">
+          <Grid item xs={12} sm={3}>
+            <NotesForm
+              id={dataId}
+              title={title}
+              body={body}
+              category={category}
+              status={status}
+            />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <Divider orientation="vertical" />
+          </Grid>
+
+          <Grid item xs={12} sm={5}>
+            <div>
+              {props.notes !== undefined &&
+                props.notes.map((ele, i) => {
+                  return (
+                    <Card
+                      className={classes.root}
+                      variant="outlined"
+                      style={{ background: i % 2 == 0 ? "#EC7063" : "#A569BD" }}
+                    >
+                      <h3 style={{ color: "white" }}>{ele.title}</h3>
+                      <CardContent>
+                        <Typography
+                          variant="body2"
+                          component="p"
+                          style={{ color: "white" }}
+                        >
+                          {ele.body}
+                        </Typography>
+                      </CardContent>
+                      <CardActions>
+                        <Button
+                          size="small"
+                          onClick={() => handleRemove(ele._id)}
+                          variant="outlined"
+                          color="primary"
+                        >
+                          Remove
+                        </Button>
+                        <Button
+                          size="small"
+                          variant="outlined"
+                          color="primary"
+                          onClick={() =>
+                            handleEdit(
+                              ele._id,
+                              ele.title,
+                              ele.body,
+                              ele.category
+                            )
+                          }
+                        >
+                          Edit
+                        </Button>
+                      </CardActions>
+                    </Card>
+                  );
+                })}
+            </div>
+          </Grid>
+        </Grid>
       </div>
-      <NotesForm
-        id={dataId}
-        title={title}
-        body={body}
-        category={category}
-        status={status}
-      />
-    </div>
+    </>
   );
 }
 

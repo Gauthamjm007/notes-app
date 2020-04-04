@@ -2,11 +2,18 @@ import React from "react";
 import { Formik } from "formik";
 import { startAddNotes, startNotesEdit } from "../../actions/notesAction";
 import { connect } from "react-redux";
-
+import NoteAddIcon from "@material-ui/icons/NoteAdd";
+import EditIcon from "@material-ui/icons/Edit";
 function NotesForm(props) {
   return (
     <div>
-      <h1>{props.status.toUpperCase()}</h1>
+      <h1>
+        {props.status == "add" ? (
+          <NoteAddIcon style={{ width: "50px", height: "50px" }} />
+        ) : (
+          <EditIcon style={{ width: "50px", height: "50px" }} />
+        )}
+      </h1>
       <Formik
         enableReinitialize={true}
         initialValues={{
@@ -35,19 +42,30 @@ function NotesForm(props) {
             <input
               type="text"
               name="title"
-              placeholder="title"
+              className="form-control"
+              placeholder="Title"
               onChange={handleChange}
               value={values.title}
             />
 
-            <input
+            <br />
+
+            <textarea
+              className="form-control"
               type="text"
               name="body"
               placeholder="body"
               onChange={handleChange}
               value={values.body}
             />
-            <select id="category" name="category" onChange={handleChange}>
+            <br />
+
+            <select
+              id="category"
+              name="category"
+              onChange={handleChange}
+              className="form-control"
+            >
               {props.status === "add" ? (
                 <option value="">SELECTED</option>
               ) : (
@@ -61,7 +79,10 @@ function NotesForm(props) {
                 );
               })}
             </select>
-            <button type="submit">Submit</button>
+            <br />
+            <button type="submit" className="btn btn-dark">
+              Submit
+            </button>
           </form>
         )}
       </Formik>

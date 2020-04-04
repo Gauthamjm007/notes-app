@@ -7,6 +7,6 @@ export default function userReducer(state = initState, action) {
     case "USER_REMOVE":
       return initState;
     default:
-      return [...state];
+      return { ...state };
   }
 }

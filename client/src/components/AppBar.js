@@ -6,7 +6,10 @@ import IconButton from "@material-ui/core/IconButton";
 import NoteIcon from "@material-ui/icons/Note";
 import CategoryIcon from "@material-ui/icons/Category";
 import styled from "styled-components";
-
+import { Link } from "react-router-dom";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
+import { startLogout } from "../actions/userAction";
+import { connect } from "react-redux";
 const HeadingText = styled.h6`
   font-family: Montserrat;
   font-style: normal;
@@ -80,9 +83,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default function MainAppBar() {
+function MainAppBar(props) {
   const classes = useStyles();
-
+  const handleLogout = () => {
+    props.dispatch(startLogout());
+  };
   return (
     <div className={classes.grow}>
       <AppBar position="fixed" style={{ height: "70px" }}>
@@ -94,17 +99,33 @@ export default function MainAppBar() {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 17 new notifications">
-              <NoteIcon color="secondary" />
-            </IconButton>
+            <Link to="/notes">
+              <IconButton aria-label="show 17 new notifications">
+                <NoteIcon color="secondary" />
+              </IconButton>
+            </Link>
           </div>
           <div className={classes.sectionDesktop}>
-            <IconButton aria-label="show 17 new notifications">
-              <CategoryIcon color="secondary" />
-            </IconButton>
+            <Link to="/category">
+              <IconButton aria-label="show 17 new notifications">
+                <CategoryIcon color="secondary" />
+              </IconButton>
+            </Link>
+          </div>
+          <div className={classes.sectionDesktop}>
+            <Link to="/category">
+              <IconButton
+                aria-label="show 17 new notifications"
+                onClick={handleLogout}
+              >
+                <ExitToAppIcon color="secondary" />
+              </IconButton>
+            </Link>
           </div>
         </Toolbar>
       </AppBar>
     </div>
   );
 }
+
+export default connect()(MainAppBar);

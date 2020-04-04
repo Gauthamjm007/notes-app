@@ -57,13 +57,15 @@ function Notes(props) {
       <div align="center" style={{ marginTop: "100px" }}>
         <Grid container component="main">
           <Grid item xs={12} sm={3}>
-            <NotesForm
-              id={dataId}
-              title={title}
-              body={body}
-              category={category}
-              status={status}
-            />
+            <Grid container justify="center">
+              <NotesForm
+                id={dataId}
+                title={title}
+                body={body}
+                category={category}
+                status={status}
+              />
+            </Grid>
           </Grid>
           <Grid item xs={12} sm={3}>
             <Divider orientation="vertical" />

@@ -9,9 +9,15 @@ function NotesForm(props) {
     <div>
       <h1>
         {props.status == "add" ? (
-          <NoteAddIcon style={{ width: "50px", height: "50px" }} />
+          <NoteAddIcon
+            style={{ width: "50px", height: "50px" }}
+            color="primary"
+          />
         ) : (
-          <EditIcon style={{ width: "50px", height: "50px" }} />
+          <EditIcon
+            style={{ width: "50px", height: "50px" }}
+            color="secondary"
+          />
         )}
       </h1>
       <Formik

@@ -4,7 +4,7 @@ import Swal from "sweetalert2";
 export const startLogout = () => {
   return (dispatch) => {
     axios
-      .delete("/users/logout", {
+      .delete("/logout", {
         headers: {
           "x-auth": localStorage.getItem("authToken")
         }
@@ -13,7 +13,7 @@ export const startLogout = () => {
         if (response.data.notice) {
           localStorage.removeItem("authToken");
           dispatch(removeUser());
-          window.location.href = "/users/login";
+          window.location.href = "/signin";
         }
       });
   };
@@ -86,7 +86,7 @@ export const setUser = (user) => {
 export const startSetUser = () => {
   return (dispatch) => {
     axios
-      .get("/users/account", {
+      .get("/account", {
         headers: {
           "x-auth": localStorage.getItem("authToken")
         }

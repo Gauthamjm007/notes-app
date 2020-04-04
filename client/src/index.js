@@ -5,14 +5,18 @@ import App from "./App";
 import { Provider } from "react-redux";
 import { startGetCategory } from "../src/actions/categoryAction";
 import { startGetNotes } from "../src/actions/notesAction";
+import { startSetUser } from "../src/actions/userAction";
 const store = configureStore();
 
 store.subscribe(() => {
   console.log(store.getState());
 });
 
-store.dispatch(startGetCategory());
-store.dispatch(startGetNotes());
+if (localStorage.getItem("authToken")) {
+  store.dispatch(startGetCategory());
+  store.dispatch(startGetNotes());
+  store.dispatch(startSetUser());
+}
 
 const jsx = (
   <Provider store={store}>

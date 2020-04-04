@@ -25,6 +25,7 @@ function App() {
         <BrowserRouter>
           <Route path="/notes" component={Notes}></Route>
           <Route path="/category" component={Category}></Route>
+          <Route path="/signin" component={SignIn} exact={true}></Route>
           <Route path="/" component={SignIn} exact={true}></Route>
           <Route path="/signup" component={SignUp} exact={true}></Route>
         </BrowserRouter>

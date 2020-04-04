@@ -3,7 +3,6 @@ import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -11,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { startLogin } from "../../actions/userAction";
+import { Redirect, Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,6 +55,9 @@ function SignIn(props) {
     const formData = { email, password };
     props.dispatch(startLogin(formData, redirect));
   };
+  if (localStorage.getItem("authToken")) {
+    return <Redirect to="/notes" />;
+  }
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
@@ -109,9 +112,7 @@ function SignIn(props) {
             </Button>
             <Grid container>
               <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
-                </Link>
+                <Link to="/signup">{"Don't have an account? Sign Up"}</Link>
               </Grid>
             </Grid>
           </form>

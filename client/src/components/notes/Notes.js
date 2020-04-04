@@ -10,6 +10,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { startGetCategory } from "../../actions/categoryAction";
 import MainAppBar from "../AppBar";
 const useStyles = makeStyles({
   root: {
@@ -32,6 +33,9 @@ const useStyles = makeStyles({
 
 function Notes(props) {
   const classes = useStyles();
+  (function() {
+    props.dispatch(startGetCategory());
+  })();
   const [dataId, SetDataId] = React.useState("");
   const [status, SetStatus] = React.useState("add");
   const [title, SetTitle] = React.useState("");
@@ -79,7 +83,9 @@ function Notes(props) {
                     <Card
                       className={classes.root}
                       variant="outlined"
-                      style={{ background: i % 2 == 0 ? "#EC7063" : "#A569BD" }}
+                      style={{
+                        background: i % 2 === 0 ? "#EC7063" : "#A569BD"
+                      }}
                     >
                       <h3 style={{ color: "white" }}>{ele.title}</h3>
                       <CardContent>

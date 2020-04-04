@@ -5,12 +5,28 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { connect } from "react-redux";
 import { startLogin } from "../../actions/userAction";
 import { Redirect, Link } from "react-router-dom";
+import styled from "styled-components";
+import ImportContactsIcon from "@material-ui/icons/ImportContacts";
+
+const Heading = styled.h1`
+  font-family: Montserrat;
+  font-style: normal;
+  font-weight: 300;
+  font-size: ${(props) => props.fontSize}px;
+  line-height: 88px;
+  /* identical to box height */
+
+  letter-spacing: -1.5px;
+
+  color: #ffffff;
+
+  mix-blend-mode: normal;
+`;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,14 +77,17 @@ function SignIn(props) {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7} className={classes.image} />
+      <Grid item xs={false} sm={4} md={7} className={classes.image}>
+        <Heading fontSize={56}> Welcome to notes only</Heading>
+        <Heading fontSize={24}>your notes taking companion</Heading>
+      </Grid>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
           <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
+            <ImportContactsIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Sign in - Notes Only
           </Typography>
           <form className={classes.form} onSubmit={handleSubmit}>
             <TextField

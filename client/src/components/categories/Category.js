@@ -37,7 +37,7 @@ function Category(props) {
               {props.category !== undefined &&
                 props.category.map((ele) => {
                   return (
-                    <tr key={ele._id + ele.name} scope="row">
+                    <tr key={ele._id + ele.name}>
                       <td>{ele.name}</td>
                       <td>
                         <button

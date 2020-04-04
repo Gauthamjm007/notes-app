@@ -8,7 +8,7 @@ function NotesForm(props) {
   return (
     <div>
       <h1>
-        {props.status == "add" ? (
+        {props.status === "add" ? (
           <NoteAddIcon
             style={{ width: "50px", height: "50px" }}
             color="primary"

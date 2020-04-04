@@ -5,7 +5,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
 import { connect } from "react-redux";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
@@ -48,7 +48,7 @@ function SignUp(props) {
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
+          <ImportContactsIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign up

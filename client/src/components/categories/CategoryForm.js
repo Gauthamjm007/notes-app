@@ -11,7 +11,7 @@ function CategoryForm(props) {
   return (
     <div>
       <div style={{ marginTop: 50, marginBottom: 50 }}>
-        {props.status == "add" ? (
+        {props.status === "add" ? (
           <NoteAddIcon style={{ width: "50px", height: "50px" }} />
         ) : (
           <EditIcon style={{ width: "50px", height: "50px" }} />

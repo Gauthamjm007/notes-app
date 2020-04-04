@@ -6,7 +6,7 @@ import Category from "./components/categories/Category";
 import SignIn from "./components/sign/SignIn";
 import SignUp from "./components/sign/SignUp";
 import { createMuiTheme } from "@material-ui/core/styles";
-import MuiThemeProvider from "@material-ui/core/styles/MuiThemeProvider";
+import { ThemeProvider as MuiThemeProvider } from "@material-ui/core/styles";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 const theme = createMuiTheme({

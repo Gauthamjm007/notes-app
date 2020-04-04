@@ -11,6 +11,7 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { startGetCategory } from "../../actions/categoryAction";
+import { startGetNotes } from "../../actions/notesAction";
 import MainAppBar from "../AppBar";
 const useStyles = makeStyles({
   root: {
@@ -35,6 +36,7 @@ function Notes(props) {
   const classes = useStyles();
   (function() {
     props.dispatch(startGetCategory());
+    props.dispatch(startGetNotes());
   })();
   const [dataId, SetDataId] = React.useState("");
   const [status, SetStatus] = React.useState("add");

@@ -13,7 +13,7 @@ export const startLogout = () => {
         if (response.data.notice) {
           localStorage.removeItem("authToken");
           dispatch(removeUser());
-          window.location.href = "/signin";
+          window.location.href = "/";
         }
       });
   };

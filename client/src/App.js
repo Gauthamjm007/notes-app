@@ -12,11 +12,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const theme = createMuiTheme({
   palette: {
     primary: { main: "#522d5b" },
-    secondary: { main: "#ee4540" }
+    secondary: { main: "#ee4540" },
   },
   status: {
-    danger: "orange"
-  }
+    danger: "orange",
+  },
 });
 function App() {
   return (

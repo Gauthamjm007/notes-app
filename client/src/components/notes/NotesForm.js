@@ -25,7 +25,7 @@ function NotesForm(props) {
         initialValues={{
           title: props.title,
           body: props.body,
-          category: props.category
+          category: props.category,
         }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
@@ -41,7 +41,7 @@ function NotesForm(props) {
         {({
           values,
           handleChange,
-          handleSubmit
+          handleSubmit,
           /* and other goodies */
         }) => (
           <form onSubmit={handleSubmit}>
@@ -69,6 +69,7 @@ function NotesForm(props) {
             <select
               id="category"
               name="category"
+              onFocus={props.handleBluring}
               onChange={handleChange}
               className="form-control"
             >
@@ -98,7 +99,7 @@ function NotesForm(props) {
 
 const mapStateToProps = (state) => {
   return {
-    category: state.category
+    category: state.category,
   };
 };
 

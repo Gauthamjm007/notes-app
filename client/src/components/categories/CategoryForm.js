@@ -2,7 +2,7 @@ import React from "react";
 import { Formik } from "formik";
 import {
   startAddCategory,
-  startCategoryEdit
+  startCategoryEdit,
 } from "../../actions/categoryAction";
 import { connect } from "react-redux";
 import NoteAddIcon from "@material-ui/icons/NoteAdd";
@@ -33,11 +33,11 @@ function CategoryForm(props) {
         {({
           values,
           handleChange,
-          handleSubmit
+          handleSubmit,
           /* and other goodies */
         }) => (
           <form onSubmit={handleSubmit}>
-            <div class="input-group mb-3" style={{ width: 600 }}>
+            <div className="input-group mb-3" style={{ width: 600 }}>
               <input
                 type="text"
                 name="name"
@@ -46,7 +46,7 @@ function CategoryForm(props) {
                 value={values.name}
                 className="form-control"
               />
-              <div class="input-group-append">
+              <div className="input-group-append">
                 <button type="submit" className="btn btn-outline-secondary">
                   Add
                 </button>

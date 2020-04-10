@@ -1,12 +1,12 @@
-import axios from "../config/axios";
+import axios from "axios";
 
 export const startGetCategory = () => {
   return (dispatch) => {
     axios
-      .get("/category", {
+      .get("api/category", {
         headers: {
-          "x-auth": localStorage.getItem("authToken")
-        }
+          "x-auth": localStorage.getItem("authToken"),
+        },
       })
       .then((response) => {
         const category = response.data;
@@ -22,11 +22,10 @@ export const getCategory = (category) => {
 export const startRemoveCategory = (id) => {
   return (dispatch) => {
     axios
-      .delete(`/category/${id}`, {
+      .delete(`api/category/${id}`, {
         headers: {
-          "x-auth":
-             localStorage.getItem("authToken")
-        }
+          "x-auth": localStorage.getItem("authToken"),
+        },
       })
       .then((response) => {
         console.log(response.data);
@@ -49,11 +48,10 @@ export const removeCategory = (id) => {
 export const startCategoryEdit = (formData, id) => {
   return (dispatch) => {
     axios
-      .put(`/category/${id}`, formData, {
+      .put(`api/category/${id}`, formData, {
         headers: {
-          "x-auth":
-             localStorage.getItem("authToken")
-        }
+          "x-auth": localStorage.getItem("authToken"),
+        },
       })
       .then((response) => {
         console.log(response.data);
@@ -69,11 +67,10 @@ export const editCategory = (formData, id) => {
 export const startAddCategory = (formData) => {
   return (dispatch) => {
     axios
-      .post("/category", formData, {
+      .post("api/category", formData, {
         headers: {
-          "x-auth":
-             localStorage.getItem("authToken")
-        }
+          "x-auth": localStorage.getItem("authToken"),
+        },
       })
       .then((response) => {
         console.log(response.data);

@@ -1,12 +1,12 @@
-import axios from "../config/axios";
+import axios from "axios";
 
 export const startGetNotes = () => {
   return (dispatch) => {
     axios
-      .get("/notes", {
+      .get("api/notes", {
         headers: {
-          "x-auth": localStorage.getItem("authToken")
-        }
+          "x-auth": localStorage.getItem("authToken"),
+        },
       })
       .then((response) => {
         const notes = response.data;
@@ -22,10 +22,10 @@ export const getNotes = (notes) => {
 export const startRemoveNotes = (id) => {
   return (dispatch) => {
     axios
-      .delete(`/notes/${id}`, {
+      .delete(`api/notes/${id}`, {
         headers: {
-          "x-auth": localStorage.getItem("authToken")
-        }
+          "x-auth": localStorage.getItem("authToken"),
+        },
       })
       .then((response) => {
         console.log(response.data);
@@ -46,10 +46,10 @@ export const removeNotes = (id) => {
 export const startNotesEdit = (formData, id) => {
   return (dispatch) => {
     axios
-      .put(`/notes/${id}`, formData, {
+      .put(`api/notes/${id}`, formData, {
         headers: {
-          "x-auth": localStorage.getItem("authToken")
-        }
+          "x-auth": localStorage.getItem("authToken"),
+        },
       })
       .then((response) => {
         console.log(response.data);
@@ -63,18 +63,18 @@ export const editNotes = (data, id) => {
     type: "EDIT_NOTES",
     payload: {
       id,
-      data
-    }
+      data,
+    },
   };
 };
 
 export const startAddNotes = (formData) => {
   return (dispatch) => {
     axios
-      .post("/notes", formData, {
+      .post("api/notes", formData, {
         headers: {
-          "x-auth": localStorage.getItem("authToken")
-        }
+          "x-auth": localStorage.getItem("authToken"),
+        },
       })
       .then((response) => {
         console.log(response.data);

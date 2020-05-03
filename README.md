@@ -1,4 +1,5 @@
 **Notes Only -MERN STACK**<br/>
+An Application where you can take notes and make category based on that
 click[here](https://notes-only.herokuapp.com/) to view the app<br/>
 
 to run it locally<br/>
